@@ -1,0 +1,998 @@
+:root {
+    --primary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --transition-slow: all 0.5s ease;
+    --transition-fast: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--primary-color);
+    overflow-x: hidden;
+}
+/* 添加平滑滾動效果 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 為各區塊添加上方間距，避免標題被導覽列遮住 */
+#motivation, #chapters, #characters, #about {
+    scroll-margin-top: 80px;
+    position: relative;
+    z-index: 2;
+    background-color: #1a1a1a;
+}
+/* 載入動畫 */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary-color);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-line {
+    width: 0;
+    height: 1px;
+    background: var(--text-color);
+    transition: width 1s ease;
+}
+
+/* 導航 */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    background: transparent; /* 移除背景色 */
+    mix-blend-mode: difference;
+}
+
+/* Logo 樣式 */
+.logo-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    mix-blend-mode: difference;
+    z-index: 101;
+}
+
+/* Menu 按鈕樣式 */
+.menu-toggle {
+    color: var(--text-color);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    mix-blend-mode: difference;
+    z-index: 101;
+}
+
+.vertical-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 999;
+    transition: right 0.5s ease;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.vertical-nav.active {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+}
+
+.nav-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    list-style: none;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    writing-mode: vertical-rl; /* 設定垂直排列 */
+}
+
+.nav-item:hover {
+    opacity: 0.7;
+}
+
+.nav-item .jp {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+}
+
+.nav-item .en {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+/* RWD 調整 */
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .nav-item .jp {
+        font-size: 1rem;
+    }
+    
+    .nav-item .en {
+        font-size: 0.7rem;
+    }
+}
+
+/* 首頁視頻區域 */
+.hero {
+    position: relative;
+    height: 300vh; /* 設置為三倍視窗高度以容納三個文字區塊 */
+    overflow: hidden;
+}
+/* 文字容器 - 調整位置和層級 */
+.hero-content {
+    position: fixed;  /* 改為 fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 3;  /* 確保在最上層 */
+    pointer-events: none;  /* 新增，防止干擾視頻交互 */
+}
+/* 更新後續區塊樣式 */
+.motivation, .chapters, .characters, .about {
+    position: relative;
+    z-index: 1;
+    background: var(--primary-color);
+}
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+/* 視頻樣式更新 */
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+.overlay,
+.dot-overlay {
+    display: none;
+}
+/* 點陣遮罩 */
+.dot-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 4px 4px;
+    opacity: 0.5;
+    z-index: 2;
+}
+
+/* 深色遮罩 */
+
+/* 遮罩 - 改為 fixed 並調整透明度 */
+.dark-overlay {
+    position: fixed;  /* 改為 fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;  /* 改為 100vh */
+    background: rgba(0, 0, 0, 0.4);  /* 調整透明度 */
+    z-index: 2;  /* 新增 z-index */
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-color);
+}
+
+/* 文字內容 */
+.text-block {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 4;
+}
+
+
+/* 調整每個文字區塊的位置 */
+.text-block-1 {
+    top: 50%;
+    right: 20%;
+    transform: translateY(-50%);
+}
+
+.text-block-2 {
+    top: 50%;
+    right: 45%;
+    transform: translateY(-50%);
+}
+
+.text-block-3 {
+    top: 50%;
+    right: 70%;
+    transform: translateY(-50%);
+}
+
+.text-block h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.text-block p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", serif;
+    color: #fff;
+    margin-left: 2rem;
+}
+
+.vertical-text p {
+    font-size: 1.4rem;
+    line-height: 2;
+    letter-spacing: 0.15em;
+    margin: 0 1.5rem;
+    white-space: nowrap;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.horizontal-text {
+    position: absolute;
+    bottom: -100px; /* 增加底部間距 */
+    left: -420px;  /* 調整水平文字的位置 */
+    color: #fff;
+    font-family: "Times New Roman", serif;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    width: 500px; /* 設定固定寬度 */
+    text-align: left;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.horizontal-text p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+.text-block.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.text-block.active .vertical-text p,
+.text-block.active .horizontal-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+.english-text {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    max-width: 600px;
+}
+
+.english-text p {
+    opacity: 0;
+    transform: translateY(20px);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+
+/* 選書動機區塊 */
+.motivation {
+    position: relative;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 8rem 0;
+    overflow: hidden;
+}
+.motivation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.motivation-content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.motivation .section-title {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+
+}
+
+.motivation-text {
+    font-size: 1.1rem;
+    line-height: 2;
+    letter-spacing: 0.05em;
+}
+
+.motivation-text p {
+    margin-bottom: 2rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+.motivation-text p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .motivation {
+        padding: 4rem 0;
+    }
+    
+    .motivation-text {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+}
+
+/* 關於區塊 */
+ 
+/* 章節區塊 */
+.chapters {
+    padding: 4rem 0;
+    background-color: #413F42;
+    color: #ffffff;
+}
+
+.chapters-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.chapter-title {
+    text-align: right;
+    padding: 2rem 10% 4rem;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.189);
+}
+
+.chapter-title h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+.chapter-title .subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-family: "Times New Roman", serif;
+}
+
+.chapter-wrapper {
+    padding: 4rem 0;
+}
+
+.chapter-section {
+    margin-bottom: 4rem;
+}
+
+.chapter-flex {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.chapter-flex.reverse {
+    flex-direction: row-reverse;
+}
+
+.chapter-image {
+    flex: 1;
+    height: 550px;
+    overflow: hidden;
+}
+
+.chapter-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.chapter-content {
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.chapter-content h3 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.chapter-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Hover 效果 */
+.chapter-section:hover .chapter-image img {
+    transform: scale(1.05);
+}
+
+/* RWD 調整 */
+@media (max-width: 1024px) {
+    .chapter-flex, 
+    .chapter-flex.reverse {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .chapter-image {
+        width: 100%;
+        height: 400px;
+    }
+    
+    .chapter-content {
+        padding: 0 1rem;
+    }
+
+    .chapter-title {
+        padding: 2rem 5% 3rem;
+    }
+}
+/* 人物區塊樣式 */
+.characters {
+    padding: 0rem 0;
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.characters-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.characters-title {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+.character-subtitle {
+    font-family: "游明朝", YuMincho, "Hiragino Mincho ProN W3", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-weight: 300;
+}
+.title-jp {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.title-en {
+    display: block;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.2em;
+    font-family: "Times New Roman", serif;
+}
+
+.character-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.character-item {
+    display: flex;
+    gap: 4rem;
+    opacity: 1; /* 改為預設可見 */
+    transform: translateY(0);
+    transition: all 0.6s ease;
+    margin-bottom: 4rem;
+    min-height: 200px; /* 確保有足夠的空間 */
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+.character-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.character-header {
+    flex: 0 0 300px;
+}
+
+.character-name {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 1rem;
+}
+
+.name-jp {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.name-en {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.1em;
+    font-family: "Times New Roman", serif;
+}
+
+.character-content {
+    flex: 1;
+    padding-top: 1rem;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    min-height: 100px; /* 確保有最小高度 */
+    overflow: visible;
+}
+
+.character-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.8);
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* RWD 調整 */
+@media (max-width: 768px) {
+    .characters {
+        padding: 4rem 0;
+    }
+
+    .character-item {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .character-header {
+        flex: none;
+    }
+
+    .name-jp {
+        font-size: 1.5rem;
+    }
+
+    .character-description {
+        font-size: 1rem;
+    }
+}
+/* 延伸閱讀區塊樣式 */
+.adaptation {
+    padding: 0rem 0;
+    padding-bottom: 0.8rem;
+    background-color: #343131;
+    color: #ffffff;
+}
+
+.adaptation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.adaptation-title {
+    text-align: right;
+    padding: 2rem 10% 4rem;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.189);
+    margin-bottom: 4rem;
+}
+
+.adaptation-title h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+.adaptation-title .subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-family: "Times New Roman", serif;
+}
+
+.adaptation-intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 4rem;
+    letter-spacing: 0.05em;
+}
+
+.adaptation-section {
+    margin-bottom: 6rem;
+}
+
+.adaptation-section h3 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.adaptation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.adaptation-item h4 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.05em;
+}
+
+.adaptation-item p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.song-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.song-item {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.song-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+.song-item h4 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+}
+
+.song-item p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .adaptation {
+        padding: 4rem 0;
+    }
+
+    .adaptation-title {
+        padding: 1rem 5% 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .adaptation-grid,
+    .song-list {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .adaptation-section {
+        margin-bottom: 4rem;
+    }
+
+    .adaptation-intro {
+        font-size: 1.1rem;
+    }
+
+    .adaptation-item p,
+    .song-item p {
+        font-size: 1rem;
+    }
+}
+
+
+.comparison-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.comparison-item {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.comparison-item h4 {
+    font-size: 1.5rem;
+    font-weight: 350;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.05em;
+}
+
+.comparison-item p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.vertical-line {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 100%;
+}
+
+.horizontal-line {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    margin: 4rem 0;
+}
+
+/* RWD 調整 */
+@media (max-width: 1024px) {
+    .comparison-grid {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .vertical-line {
+        display: none;
+    }
+
+    .comparison-item {
+        padding: 0;
+    }
+}
+
+
+.song-item {
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.song-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    padding: 1rem;
+    color: white;
+}
+
+.song-item:hover .play-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.song-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* 保持文字樣式 */
+.song-item h4 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.song-item p {
+    color: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+/* RWD 調整 */
+@media (max-width: 768px) {
+    .song-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .play-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.8);
+        top: 2rem;
+        right: 2rem;
+        left: auto;
+        transform: none;
+    }
+}
+/* 關於區塊 */
+.about {
+    padding: 8rem 2rem;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 頁尾 */
+footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* RWD */
+@media (max-width: 768px) {
+    .text-block-1 { right: 10%; }
+    .text-block-2 { right: 40%; }
+    .text-block-3 { right: 70%; }
+    
+    .vertical-text p {
+        font-size: 1.2rem;
+    }
+    
+    .horizontal-text {
+        font-size: 0.9rem;
+        bottom: -100px;
+        left: -150px;
+    }
+}
+.menu-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    mix-blend-mode: difference;
+}
+
+.menu-toggle .menu-text,
+.menu-toggle .close-text {
+    transition: opacity 0.3s ease;
+}
+
+.menu-toggle .close-text {
+    display: none;
+}
+
+/* 當導覽列開啟時的按鈕狀態 */
+body.nav-active .menu-toggle .menu-text {
+    display: none;
+}
+
+body.nav-active .menu-toggle .close-text {
+    display: inline-block;
+}

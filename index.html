@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Misérables | 悲慘世界</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- 載入動畫 -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- 主導航 -->
+    <header>
+        <nav class="main-nav">
+            <a href="#" class="logo-link">Les Misérables | 悲慘世界</a>
+        </nav>
+    </header>
+
+    <button class="menu-toggle fixed-menu-btn">
+        <span class="menu-text">Menu</span>
+        <span class="close-text">✕</span>
+    </button>
+
+    <!-- 垂直導覽列覆蓋層 -->
+    <div class="vertical-nav">
+        <nav class="nav-content">
+            <ul class="nav-list">
+                <li>
+                    <a href="#motivation" class="nav-item">
+                        <span class="jp">選書動機</span>
+                        <span class="en">motivation</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#read" class="nav-item">
+                        <span class="jp">我如何閱讀這本書 & 閱讀心得</span>
+                        <span class="en">reading reflection</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#chapters" class="nav-item">
+                        <span class="jp">故事章節</span>
+                        <span class="en">Chapters</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#characters" class="nav-item">
+                        <span class="jp">人物群像</span>
+                        <span class="en">Characters</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#adaptation" class="nav-item">
+                        <span class="jp">延伸閱讀</span>
+                        <span class="en">Adaptation</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- 主要內容 -->
+    <main>
+        <!-- 首頁區塊 -->
+        <section id="home" class="hero">
+            <div class="video-container">
+                <video autoplay muted loop playsinline>
+                    <source src="1月9日.mp4" type="video/mp4">
+                </video>
+                <div class="dark-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <div class="text-block text-block-1">
+                    <div class="vertical-text">
+                        <p>世上只有一種事物</p>
+                        <p>比在心靈深處播下自由的種子更偉大</p>
+                        <p>那就是在心靈深處播下愛的種子</p>
+                    </div>
+                    <div class="horizontal-text">
+                        <p>"There is one thing, and only one thing, in the world more powerful than the seed of liberty, and that is the seed of love."</p>
+                    </div>
+                </div>
+                
+                <div class="text-block text-block-1">
+                    <div class="vertical-text">
+                        <p>人生最偉大的幸福</p>
+                        <p>是堅信有人愛我們</p>
+                    </div>
+                    <div class="horizontal-text">
+                        <p>"The greatest happiness of life is the conviction that we are loved; loved for ourselves, or rather, loved in spite of ourselves."</p>
+                    </div>
+                </div>
+                
+                <div class="text-block text-block-1">
+                    <div class="vertical-text">
+                        <p>革命是人類進步的手段</p>
+                        <p>然而革命的目標永遠是人類的愛</p>
+                    </div>
+                    <div class="horizontal-text">
+                        <p>"Revolution is the means by which man advances, but the goal of revolution is always the love of humanity."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 選書動機區塊 -->
+        <section id="motivation" class="motivation">
+            <div class="motivation-container">
+                <div class="motivation-content">
+                    <h2 class="section-title">選書動機</h2>
+                    <div class="motivation-text">
+                        <p>我選擇介紹《悲慘世界》這本書，因為他是我第一次看的音樂劇，也是我第一次接觸到這個故事，觀看音樂劇時年紀不大，但我對劇中的音樂、舞台效果以及劇情印想十分深刻，特別是那些音樂的旋律和角色的情感表達，讓我在即使不理解歌詞的情況下仍然留下了十分深刻的印象。</p>
+                        <p>看完音樂劇後，我開始對原著小說產生濃厚的興趣，想知道這個故事背後更多的細節和情感。在了解小說的背景和主題後，我發現《悲慘世界》不僅講述了法國革命那段動盪的歷史，還深入探討了社會不公、貧富差距以及人性中的善與惡，雖然書名叫做《悲慘世界》，故事背景也是處於動盪不安的時代，似乎只充斥著不幸的故事，但貫徹著本書的主旨卻是「愛」，因為雨果認為只有愛，才能消滅一切的不幸。</p>
+                        <p>這本書讓我印象深刻，並在深入了解作者想表達得議題後讓我深受觸動，希望大家除了電影、音樂劇之外也能去觀賞原著小說，我覺得比起電影跟音樂劇又是一種不一樣的感覺，所以我決定選擇這本書來介紹。</p>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+                <div class="motivation-content" id="read">
+                    <h2 class="section-title">我如何閱讀這本書 & 閱讀心得</h2>
+                    <div class="motivation-text">
+                        <p>閱讀《悲慘世界》一開始其實對我來說有點困難，這本書真的很厚，一開始有點不知道從哪裡讀起，不太懂出場人物的關係，是先去看了一遍人物介紹以後，先抓住故事的主線，理解每個角色的性格和命運，就能漸漸進入故事的世界，讓我能更好的進行閱讀。</p>
+                        <p>在閱讀的過程中，督察賈維這個角色一開始讓我很不解，他為什麼要對尚萬強窮追不捨，明明他已經改過自新、成為一個善良的人了，但賈維卻一點都不放過他，甚至連一絲人情味都沒有，讓我很不喜歡他，很難理解他的執著，覺得他這種對法律的絕對忠誠未免太不近人情了。</p>
+                        <p>但是，隨著故事的推進，我開始慢慢明白賈維其實是個很矛盾的角色。他從小在監獄裡長大，目睹了很多罪惡，所以他對法律的依賴幾乎成了一種信仰。在他的眼中，世界就是非黑即白，罪犯就是罪犯，法律的執行不能有任何妥協。但當尚萬強一次又一次展現出善良和人性的光輝時，賈維的內心開始動搖。他的世界觀逐漸崩塌，因為他發現，法律並不是一切，善惡之間其實有一條模糊的灰色地帶。  
+                        </p>
+                        <p>
+                        看到賈維最終選擇結束自己的生命時，我很驚訝，也不太懂為甚麼會做出這個選擇，我對他的感受變得很複雜，我還是覺得他太過執著，但我也為他感到悲傷。他其實並不是一個壞人，而是一個被自己信念束縛住的人。世界上的確有很多規則，但人性、同情心和寬容，往往比這些規則更重要。從討厭到理解，賈維讓我對「正義」這個詞有了更深的思考。</p>
+                        <p>閱讀完這本書後，我去查閱當時的歷史背景，像是法國大革命、貧富差距和社會階級的問題，讓我更能了解為什麼雨果要寫這樣一部小說，也讓故事變得更加立體。我發現，書中的每個角色和他們的命運，都像是那個時代的一面鏡子，映射出很多社會問題和人性的掙扎。</p>
+                        <p>回顧這本書的時候，其實書中的情節和現在生活也有一些連結，這本小說雖然寫於十九世紀，但裡面探討的很多議題，像是正義、善惡、愛與救贖，其實到今天都還很有意義。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 章節區塊 -->
+        <section id="chapters" class="chapters">
+            <div class="chapters-container">
+                <div class="chapter-title">
+                    <h2>故事章節</h2>
+                    <p class="subtitle">The Chapters</p>
+                </div>
+                
+                <div class="chapter-wrapper">
+                    <!-- 第一部分 -->
+                    <div class="chapter-section">
+                        <div class="chapter-flex">
+                            <div class="chapter-image">
+                                <img src="Jean_Valjean.jpg" alt="尚萬強的救贖" />
+                            </div>
+                            <div class="chapter-content">
+                                <h3>第一部：風暴與寧靜</h3>
+                                <p class="chapter-description">尚萬強的救贖之路描述了一個因偷麵包救家人而入獄十九年的男人，他出獄後滿腔怨恨，覺得這個世界對他不公平。但有一天，他遇到了一位特別善良的主教——米里艾主教，主教不但原諒了他，還送了他一對銀燭臺，讓冉阿讓徹底改變了人生。他決定重新做人，用自己的善良和努力去幫助更多人，在的寬恕下重獲新生。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第二部分 -->
+                    <div class="chapter-section">
+                        <div class="chapter-flex reverse">
+                            <div class="chapter-content">
+                                <h3>第二部：光明與黑暗</h3>
+                                <p class="chapter-description">
+                                傅安婷是一位單親母親，為了讓女兒珂賽特過得好，她付出了一切，承受了許多社會的歧視與壓迫。她賣掉了頭髮和牙齒，甚至被迫走上卑微的道路，只為寄錢給泰納第夫婦照顧珂賽特。但現實殘酷，這對夫婦貪婪虐待珂賽特，而傅安婷自己則在社會的歧視與壓迫下失去了健康和希望。當尚萬強出現，他以善良安撫了傅安婷，承諾照顧珂賽特，讓傅安婷在生命的最後一刻稍得安慰。</p>
+                            </div>
+                            <div class="chapter-image">
+                                <img src="Margaret.jpg" alt="傅安婷的悲劇" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第三部分 -->
+                    <div class="chapter-section">
+                        <div class="chapter-flex">
+                            <div class="chapter-image">
+                                <img src="330px-Marius_sees_Cosette.jpg" alt="馬留斯與珂賽特" />
+                            </div>
+                            <div class="chapter-content">
+                                <h3>第三部：革命與愛情</h3>
+                                <p class="chapter-description">
+                                馬留斯與珂賽特的愛情故事發生在法國革命的動盪背景下，由尚萬強撫養長大的珂賽特，從苦難中走出，成為善良純真的女子。某天，她在街上遇見了年輕的馬呂斯，兩人一見鍾情，彼此深深吸引。馬呂斯是個滿懷理想的青年，為追求自由和正義參與了革命運動。這段愛情在法國革命的動盪中展開，既浪漫又充滿危機。在街壘戰中，馬呂斯受重傷命懸一線，是尚萬強冒險將他救出，只因他是珂賽特摯愛的人。經歷了戰火與考驗，馬呂斯與珂賽特的愛情最終克服重重困難，帶來一抹亮色，讓這個故事在悲劇的底色中閃現出希望與愛的力量。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 人物區塊 -->
+        <!-- 人物區塊 -->
+        <section id="characters" class="characters">
+            <div class="characters-container">
+                <h2 class="characters-title">
+                    <span class="title-jp">人物群像</span>
+                    <span class="title-en">CHARACTERS</span>
+                </h2>
+                
+                <div class="character-list">
+                    <!-- 尚萬強 -->
+                    <div class="character-item">
+                        <div class="character-header">
+                            <h3 class="character-name">
+                                <span class="name-jp">尚萬強</span>
+                                <span class="name-en">Jean Valjean</span>
+                            </h3>
+                        </div>
+                        <div class="character-content">
+                            <p class="character-subtitle">救贖與人性的光輝</p>   
+                            <p class="character-description">
+                                「一個苦役犯，背負罪惡；一位主教，象徵寬恕。當寬恕擊敗罪惡，人性找回了救贖的光芒。」尚萬強的故事象徵人性掙脫罪惡枷鎖、追尋救贖的過程。他因偷麵包而被判十九年苦役，成為社會眼中的罪犯，卻在主教的寬恕中找到了重生的契機。他代表了人性善良的力量——即使身處黑暗，也能選擇走向光明。他的一生充滿了矛盾：對窮人，他是恩人與守護者；對珂賽特，他是無私的父親；但對自己，他始終認為自己是個不可饒恕的罪人。他的掙扎與救贖，象徵人類對於道德與內心良知的永恆追求。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 督察賈維 -->
+                    <div class="character-item">
+                        <div class="character-header">
+                            <h3 class="character-name">
+                                <span class="name-jp">督察賈維</span>
+                                <span class="name-en">Inspector Javert</span>
+                            </h3>
+                        </div>
+                        <div class="character-content">
+                            <p class="character-subtitle">法律的絕對與良知的矛盾</p>   
+                            <p class="character-description">
+                                賈維是一名冷酷無情、堅定不移的警察，一生奉行法律至上，對罪犯毫不寬容。他從尚萬強因偷麵包入獄起便對其窮追不捨，即使尚萬強已經改過自新，成為對社會有貢獻的人，他依然認為罪行無法被赦免。在追捕的過程中，賈維展現了對法律的絕對忠誠，視執行正義為唯一的準則。
+
+                                然而，當尚萬強在決定性時刻饒恕了賈維，並放過了他的性命，賈維開始動搖，無法理解善與寬恕的力量。這使得他陷入了對自身信念的深刻懷疑，無法調和對法律的執著與對人性良知的覺醒。最終，他選擇了以自我毀滅結束這種內心的矛盾與痛苦。賈維的命運反映了當法律失去溫度，對人性將造成的巨大壓迫，並揭示了機械化執法背後深層的倫理困境。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 傅安婷 -->
+                    <div class="character-item">
+                        <div class="character-header">
+                            <h3 class="character-name">
+                                <span class="name-jp">傅安婷</span>
+                                <span class="name-en">Fantine</span>
+                            </h3>
+                        </div>
+                        <div class="character-content">
+                            <p class="character-subtitle">犧牲與母愛的永恆</p>  
+                            <p class="character-description">
+                                「一位母親，象徵犧牲；一個孩子，代表希望。當犧牲成就希望，黑暗也能化為光明。」芳婷的角色象徵無私的母愛與犧牲的偉大。為了女兒珂賽特的幸福，她不惜賣掉頭髮與牙齒，甚至付出自己的健康與尊嚴。她的生命雖短暫而充滿悲劇，但她的愛卻是純粹且永恆的。芳婷也象徵了弱勢女性在不公社會中的掙扎，揭示了當時社會的冷酷與不公。她的犧牲最終由尚萬強承接，將母愛的希望傳遞給了珂賽特，為這段悲劇染上了一抹光輝。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 德納第夫婦 -->
+                    <div class="character-item">
+                        <div class="character-header">
+                            <h3 class="character-name">
+                                <span class="name-jp">德納第夫婦</span>
+                                <span class="name-en">Thenardiers</span>
+                            </h3>
+                        </div>
+                        <div class="character-content">
+                            <p class="character-subtitle">人性中的貪婪與墮落</p>  
+                            <p class="character-description">
+                                德納第夫婦象徵人性中的貪婪與墮落。他們貪得無厭，對珂賽特的虐待毫無底線，只為滿足自己的私慾。儘管他們的行為卑鄙，但卻推動了故事的發展，讓尚萬強的角色更加閃耀。他們的存在為《悲慘世界》添加了一層現實的殘酷，也提醒人們即使在愛與救贖的故事中，黑暗與墮落依然無法忽視。
+                            </p>
+                        </div>
+                    </div>
+                    <!-- 珂賽特 -->
+                    <div class="character-item">
+                        <div class="character-header">
+                            <h3 class="character-name">
+                                <span class="name-jp">珂賽特</span>
+                                <span class="name-en">Cosette</span>
+                            </h3>
+                        </div>
+                        <div class="character-content">
+                            <p class="character-subtitle">希望與純真的象徵</p>  
+                            <p class="character-description">
+                                珂賽特象徵希望與純真，是尚萬強生命中最大的安慰與驅動力。她從幼年受虐的黑暗生活中被拯救，成長為一位充滿愛與善良的女性。她代表著新一代的希望，象徵在苦難中依然可以綻放的光芒。她與馬呂斯的愛情，則是對未來美好生活的憧憬與追求，為這本書增添了浪漫色彩。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 延伸閱讀區塊 -->
+        <section id="adaptation" class="adaptation">
+            <div class="adaptation-container">
+                <div class="adaptation-title">
+                    <h2>延伸閱讀</h2>
+                    <p class="subtitle">Adaptation</p>
+                </div>
+                
+                <div class="adaptation-content">
+                    <div class="adaptation-intro">
+                        <p>《悲慘世界》不僅是一部影響深遠的經典小說，也成為許多藝術形式改編的靈感來源，尤其是音樂劇與電影。在改編過程中，不同形式以各自的語言和特色重新詮釋了這個關於愛、救贖與革命的故事。</p>
+                    </div>
+
+                    <!-- 音樂劇、電影與小說的異同 -->
+                    <div class="adaptation-section">
+                        <h3>音樂劇、電影與小說的異同</h3>
+                        <div class="comparison-container">
+                            <div class="comparison-content">
+                                <div class="comparison-grid">
+                                    <div class="comparison-item">
+                                        <h4 >-情節取捨與敘事方式-</h4>
+                                        <p>小說作為長篇文學作品，詳細刻畫了人物的背景、內心世界以及社會環境；音樂劇則精煉故事情節，以音樂和歌詞傳遞情感，減少了對歷史和社會背景的直接描寫，讓觀眾能在有限的時間內體驗故事的核心。電影版本則介於二者之間，通過畫面與表演補足音樂劇的敘事限制，同時保留了小說的一些細節。</p>
+                                    </div>
+                                    <div class="vertical-line"></div>
+                                    <div class="comparison-item">
+                                        <h4>-角色的呈現與情感表達-</h4>
+                                        <p>音樂劇以歌曲和旋律強化了角色的情感。例如，尚萬強的內心掙扎在歌曲《What Have I Done》中得以淋漓盡致地展現，而電影則通過面部表情與場景設置進一步深化了這些情感，使觀眾感受到角色的真實與深度。</p>
+                                    </div>
+                                    <div class="vertical-line"></div>
+                                    <div class="comparison-item">
+                                        <h4>-對觀眾的影響-</h4>
+                                        <p>小說的影響集中在啟發讀者思考人性、社會不公與救贖的主題；音樂劇則通過情感張力強烈的歌詞和旋律，讓觀眾直觀感受到故事的力量；電影則借助視覺和聽覺的結合，吸引了更多不同背景的觀眾，將《悲慘世界》的影響力擴展到更廣泛的層面。</p>
+                                    </div>
+                                </div>
+                                <div class="horizontal-line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 音樂劇的經典曲目解析 -->
+                    <div class="adaptation-section">
+                        <h3>音樂劇的經典曲目解析</h3>
+                        <div class="song-list">
+
+                                                        
+                            <a href="https://www.youtube.com/watch?v=pBbnvOqVNyM" target="_blank" class="song-item">
+                                <div class="play-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                    </svg>
+                                </div>
+                                <h4>《Look Down》</h4>
+                                <p>是《悲慘世界》中極具力量的合唱曲，分別在開場與第二幕出現，展現社會底層的絕望與控訴。首次由苦役犯唱出，低沉的旋律揭示壓迫與不公，尚萬強的獨唱則控訴不公命運；第二次則由街頭窮人們演唱，帶著對貧窮與社會不平的諷刺與控訴，形成對階級壓迫的強烈批判。</p>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=ulJXiB5i_q0" target="_blank" class="song-item">
+                                <div class="play-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                    </svg>
+                                </div>
+                                <h4>《I Dreamed a Dream》</h4>
+                                <p>芳婷的獨唱曲目，悲痛而深情地展現了她對美好未來的期盼與破滅的夢想，揭示了她悲劇命運的無奈。這首歌的旋律與歌詞成為整個音樂劇中最廣為人知的片段之一，代表了個體在社會壓迫中的絕望與呼喊。</p>
+                            </a>
+                            
+                            <a href="https://www.youtube.com/watch?v=1q82twrdr0U" target="_blank" class="song-item">
+                                <div class="play-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                    </svg>
+                                </div>
+                                <h4>《Do You Hear the People Sing?》</h4>
+                                <p>這是一首充滿力量的革命頌歌，展現了年輕革命者們對自由與平等的熱忱，激發了觀眾的共鳴。其強烈的節奏與合唱的形式，不僅成為音樂劇的精神象徵，也影響了不同時代的社會運動。</p>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- 不同時代的影響 -->
+                    <div class="adaptation-section">
+                        <h3>不同時代的影響</h3>
+                        <p>音樂劇和電影不僅延續了小說的生命力，也使《悲慘世界》的故事穿越時代與文化，影響了不同背景的觀眾。音樂劇以其感人至深的旋律與歌詞，激勵了觀眾思考自由、愛與人性的價值，而電影則以其視覺表現將故事推向更廣的全球舞台。這些改編作品成功地使雨果的經典故事成為跨越世代的文化財富、吸引更多人的觀看並了解，也讓更多人接觸並愛上這部動人心弦的史詩巨作。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>中文經典閱讀 期末書本導讀</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+</body>
+</html>
